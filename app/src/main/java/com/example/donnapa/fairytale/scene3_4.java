@@ -8,13 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
 public class scene3_4 extends AppCompatActivity {
     Button btn_back, btn_next ;
-    ImageView ball1;
-    boolean ball = false;
+    ImageView ball , horse;
+    Animation slide;
     Dialog toy;
     int index = 0;
     int[] restoy = {R.drawable.kala,R.drawable.kema,R.drawable.kanklauy};
@@ -25,12 +27,23 @@ public class scene3_4 extends AppCompatActivity {
         setContentView(R.layout.scene3_4);
 
         //ball
-        ball1 = (ImageView)findViewById(R.id.ball);
-//        ((AnimationDrawable)ball1.getBackground()).start();
-        ball1.setOnClickListener(new View.OnClickListener() {
+        ball = (ImageView)findViewById(R.id.ball);
+        ((AnimationDrawable)ball.getBackground()).start();
+        ball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        toy.show();
+                slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
+                ball.startAnimation(slide);
+                ball.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
+                ((AnimationDrawable) ball.getBackground()).stop();
+            }
+        });
+        //horse
+        horse = (ImageView)findViewById(R.id.prasung);
+        horse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toy.show();
             }
         });
 
@@ -108,12 +121,12 @@ public class scene3_4 extends AppCompatActivity {
         Runtime.getRuntime().gc();
         System.gc();
 
-        ((AnimationDrawable) ball1.getBackground()).stop();
+        ((AnimationDrawable) horse.getBackground()).stop();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        ((AnimationDrawable) ball1.getBackground()).start();
+        ((AnimationDrawable) horse.getBackground()).start();
     }
 }

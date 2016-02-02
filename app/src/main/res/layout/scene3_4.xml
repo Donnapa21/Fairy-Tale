@@ -41,11 +41,12 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="340dp"
+        android:id="@+id/prasung"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="240dp"
         android:layout_marginTop="120dp"
-        android:src="@drawable/prasung" />
+        android:background="@drawable/animprasung" />
 
     <ImageView
         android:layout_width="350dp"
@@ -55,9 +56,12 @@
 
     <ImageView
         android:id="@+id/ball"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/animball"/>
     <Button
         android:id="@+id/btn_back"
