@@ -19,7 +19,7 @@ public class scene3_4 extends AppCompatActivity {
     Animation slide;
     Dialog toy;
     int index = 0;
-    int[] restoy = {R.drawable.kala,R.drawable.kema,R.drawable.kanklauy};
+    int[] restoy = {R.drawable.kema,R.drawable.kala,R.drawable.kanklauy};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

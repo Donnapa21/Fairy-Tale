@@ -8,6 +8,6 @@
         android:fromXDelta="0%p"
         android:toXDelta="-5%p"
         android:fromYDelta="0%p"
-        android:toYDelta="20%p"/>
+        android:toYDelta="15%p"/>
 
 </set>
