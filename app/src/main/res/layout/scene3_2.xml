@@ -13,7 +13,7 @@
 
     <ImageView
         android:id="@+id/imgSun"
-        android:layout_width="520dp"
+        android:layout_width="470dp"
         android:layout_height="360dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -27,86 +27,111 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:src="@drawable/book3_1" />
+        android:src="@drawable/book3_2" />
 
     <ImageView
-        android:layout_width="670dp"
-        android:layout_height="350dp"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
         android:layout_alignEnd="@id/imgSun"
-        android:layout_marginTop="60dp"
-        android:scaleType="fitXY"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="120dp"
+        android:layout_marginLeft="157dp"
+        android:layout_marginTop="80dp"
+        android:scaleType="fitXY"
         android:src="@drawable/fall" />
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="520dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginLeft="560dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/trees" />
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginLeft="410dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/trees" />
 
-     <ImageView
-        android:layout_width="200dp"
+    <ImageView
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="450dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginLeft="485dp"
+        android:layout_marginTop="135dp"
         android:src="@drawable/wood" />
 
     <ImageView
         android:id="@+id/sung1"
         android:layout_width="80dp"
-        android:layout_height="160dp"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="525dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/animsung1" />
 
     <RelativeLayout
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="90dp"
-        android:layout_marginLeft="350dp">
+        android:layout_marginLeft="230dp">
 
         <ImageView
             android:id="@+id/word3_11"
-            android:layout_width="400dp"
+            android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             android:src="@drawable/word3_11"
             android:visibility="gone" />
 
     </RelativeLayout>
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="150dp"
+        android:src="@drawable/bro2"></ImageView>
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="430dp"
+        android:src="@drawable/bro1"></ImageView>
 
     <ImageView
         android:id="@+id/meat1"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="660dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginLeft="500dp"
+        android:layout_marginTop="260dp"
         android:background="@drawable/animmeat" />
+
+    <ImageView
+        android:id="@+id/fish"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="320dp"
+        android:background="@drawable/fish" />
 
     <RelativeLayout
         android:layout_width="220dp"
         android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="110dp">
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="200dp">
 
         <ImageView
             android:id="@+id/word3_12"
@@ -114,9 +139,27 @@
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/word3_12"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/animfish"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/animfish"/>
+
+    <ImageView
+        android:id="@+id/animfish1"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/animfish"/>
 
     <Button
         android:id="@+id/btn_back"
@@ -144,6 +187,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/button_pause"/>
+        android:background="@drawable/button_pause" />
 
 </RelativeLayout>

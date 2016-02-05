@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 public class scene3_2 extends AppCompatActivity {
     Button btn_back, btn_next;
-    ImageView sung1, meat1;
+    ImageView sung1, meat1,fish, fish1;
     ImageView word3_11, word3_12;
     boolean sung = false;
     boolean meat = false;
@@ -24,6 +24,11 @@ public class scene3_2 extends AppCompatActivity {
         word3_11 = (ImageView)findViewById(R.id.word3_11);
         word3_12 = (ImageView)findViewById(R.id.word3_12);
 
+        //animfish
+        fish = (ImageView)findViewById(R.id.animfish);
+        ((AnimationDrawable)fish.getBackground()).start();
+        fish1 = (ImageView)findViewById(R.id.animfish1);
+        ((AnimationDrawable)fish1.getBackground()).start();
         //sung1
         sung1 = (ImageView)findViewById(R.id.sung1);
         ((AnimationDrawable)sung1.getBackground()).start();

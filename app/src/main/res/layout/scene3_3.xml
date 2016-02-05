@@ -53,8 +53,8 @@
         android:layout_height="200dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="150dp">
 
         <ImageView
             android:id="@+id/word3_31"
