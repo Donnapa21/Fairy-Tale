@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.donnapa.fairytale.map3">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/map3" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
+
+            <ImageView
+                android:id="@+id/mapsamon"
+                android:layout_width="325dp"
+                android:layout_height="190dp"
+                android:layout_marginLeft="150dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/mapsamon"/>
+
+            <ImageView
+                android:id="@+id/mapball"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="230dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="100dp"
+                android:src="@drawable/mapball"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
+
+            <ImageView
+                android:id="@+id/mapfall"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="100dp"
+                android:src="@drawable/mapfall"/>
+
+            <ImageView
+                android:id="@+id/mapmalai"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="70dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:src="@drawable/mapmalai"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

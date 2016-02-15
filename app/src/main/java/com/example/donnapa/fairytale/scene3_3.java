@@ -1,19 +1,29 @@
 package com.example.donnapa.fairytale;
 
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
 public class scene3_3 extends AppCompatActivity {
-    Button btn_back, btn_next;
+    Button btn_back, btn_next,btn_puase;
     ImageView thaosamon1, prain1 ;
     ImageView word3_31, word3_32;
+    //boolean
     boolean thaosamon = false;
     boolean prain = false;
+    //dialog
+    AlertDialog.Builder builder;
+    Dialog dialog;
+    Button dialogset, dialogexit, dialoghome, dialogclose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +79,61 @@ public class scene3_3 extends AppCompatActivity {
 
                 } catch (Exception e) {
                 }
+            }
+        });
+        //builder
+        btn_puase = (Button) findViewById(R.id.btn_pause);
+        builder = new AlertDialog.Builder(this);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        btn_puase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.btndialog);
+
+                //TODO findViewBy
+                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
+                dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
+                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+
+                //button_exit
+                dialogexit.setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onClick(View v) {
+                        finishAffinity();
+
+                    }
+                });
+
+                //button_home
+                dialoghome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), map3.class);
+                        startActivity(i);
+                    }
+                });
+
+                //button_setting
+                dialogset.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                //button_close
+                dialogclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
             }
         });
 
