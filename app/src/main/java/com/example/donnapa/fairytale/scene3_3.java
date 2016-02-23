@@ -15,11 +15,13 @@ import android.widget.ImageView;
 
 public class scene3_3 extends AppCompatActivity {
     Button btn_back, btn_next,btn_puase;
-    ImageView thaosamon1, prain1 ;
+    ImageView thaosamon1, prain1, bgSky, wall;
     ImageView word3_31, word3_32;
     //boolean
     boolean thaosamon = false;
     boolean prain = false;
+    boolean flagThaosamon, flagPrain;
+    animStandUp anim;
     //dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -30,14 +32,25 @@ public class scene3_3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_3);
 
+        //bgSky
+        bgSky = (ImageView) findViewById(R.id.imgSky);
+        anim = new animStandUp(bgSky);
+
+        //wall
+        wall = (ImageView) findViewById(R.id.wall);
+        anim = new animStandUp(wall);
+
         word3_31 = (ImageView)findViewById(R.id.word3_31);
         word3_32 = (ImageView)findViewById(R.id.word3_32);
 
         thaosamon1 = (ImageView)findViewById(R.id.thaosamon1);
+        anim = new animStandUp(thaosamon1);
         ((AnimationDrawable)thaosamon1.getBackground()).start();
         thaosamon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagThaosamon = true;
+                checkDown();
                 try {
 
                     if (thaosamon == false) {
@@ -58,10 +71,13 @@ public class scene3_3 extends AppCompatActivity {
             }
         });
         prain1 = (ImageView)findViewById(R.id.prain1);
+        anim = new animStandUp(prain1);
         ((AnimationDrawable)prain1.getBackground()).start();
         prain1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagPrain = true;
+                checkDown();
                 try {
 
                     if (prain == false) {
@@ -153,5 +169,11 @@ public class scene3_3 extends AppCompatActivity {
                 startActivity(a);
             }
         });
+    }
+    public void checkDown(){
+        if (flagThaosamon == true && flagPrain == true){
+            btn_back.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
+        }
     }
 }

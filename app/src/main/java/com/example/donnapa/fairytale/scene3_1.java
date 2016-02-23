@@ -15,13 +15,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.lang.annotation.Target;
 
 public class scene3_1 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase;
-    ImageView ng1, malai, woman1;
+    ImageView ng1, malai, woman1, bgcloud, sis, stage;
     ImageView word31;
     Animation slide;
+
+    boolean flagMalai, flagKong, flagRojana;
 
     //boolean
     boolean woman = false;
@@ -30,21 +34,34 @@ public class scene3_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    animStandUp anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_1);
 
+        //ฉากหลัง
+        bgcloud = (ImageView) findViewById(R.id.imgCloud);
+        anim = new animStandUp(bgcloud);
+
+        //sis
+        sis = (ImageView) findViewById(R.id.sis);
+        anim = new animStandUp(sis);
+
         //word
         word31 = (ImageView) findViewById(R.id.word31);
 
         //  คลิกรจนา
+
         woman1 = (ImageView) findViewById(R.id.woman1);
+        anim = new animStandUp(woman1);
         ((AnimationDrawable) woman1.getBackground()).start();
         woman1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagRojana = true;
+                checkDown();
                 try {
                     if (woman == false) {
                         ((AnimationDrawable) woman1.getBackground()).stop();
@@ -64,10 +81,13 @@ public class scene3_1 extends AppCompatActivity {
         });
         //  คลิกพวงมาลัย
         malai = (ImageView) findViewById(R.id.malai);
+        anim = new animStandUp(malai);
         ((AnimationDrawable) malai.getBackground()).start();
         malai.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
+                                         flagMalai = true;
+                                         checkDown();
                                          slide = AnimationUtils.loadAnimation(scene3_1.this, R.anim.movemalai);
                                          malai.startAnimation(slide);
                                          malai.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
@@ -79,10 +99,13 @@ public class scene3_1 extends AppCompatActivity {
 
         //กดเงาะ
         ng1 = (ImageView) findViewById(R.id.ng1);
+        anim = new animStandUp(ng1);
         ((AnimationDrawable) ng1.getBackground()).start();
         ng1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagKong = true;
+                checkDown();
 //                try {
 //                    if (flat == false) {
 //                        ((AnimationDrawable) ng1.getBackground()).stop();
@@ -184,5 +207,12 @@ public class scene3_1 extends AppCompatActivity {
                                         }
                                     }
         );
+    }
+
+    public void checkDown(){
+        if (flagKong == true && flagMalai == true && flagRojana == true){
+            btn_back.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
+        }
     }
 }

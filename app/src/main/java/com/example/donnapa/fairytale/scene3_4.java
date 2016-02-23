@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +19,9 @@ import android.widget.ImageView;
 
 public class scene3_4 extends AppCompatActivity {
     Button btn_back, btn_next ,btn_puase;
-    ImageView ball , horse;
+    ImageView ball , horse, wall, bgSky, prain;
     Animation slide;
+    MediaPlayer mediaPlayer;
     Dialog toy;
     int index = 0;
     int[] restoy = {R.drawable.kema,R.drawable.kala,R.drawable.kanklauy};
@@ -27,18 +29,35 @@ public class scene3_4 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    boolean flagHorse, flagball;
+    animStandUp anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_4);
 
+        //bgSky
+        bgSky = (ImageView) findViewById(R.id.imgSky);
+        anim = new animStandUp(bgSky);
+
+        //wall
+        wall = (ImageView) findViewById(R.id.wall);
+        anim = new animStandUp(wall);
+
+        //prain
+        prain = (ImageView) findViewById(R.id.prain);
+        anim = new animStandUp(prain);
+
         //ball
         ball = (ImageView)findViewById(R.id.ball);
+        anim = new animStandUp(ball);
         ((AnimationDrawable)ball.getBackground()).start();
         ball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagball = true;
+                checkDown();
                 slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
                 ball.startAnimation(slide);
                 ball.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
@@ -47,18 +66,25 @@ public class scene3_4 extends AppCompatActivity {
 
             }
         });
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.horse);
+
         //horse
         horse = (ImageView)findViewById(R.id.prasung);
+        anim = new animStandUp(horse);
         horse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagHorse = true;
+                checkDown();
                 toy.show();
+                mediaPlayer.start();
             }
         });
 
         toy = new Dialog(scene3_4.this);
         toy.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //dialog นำ layout chickenlayout มาแสดง
+        //dialog นำ layout toylayout มาแสดง
         toy.setContentView(R.layout.toylayout);
         //dialog ให้สามารถปิิดได้
         toy.setCancelable(true);
@@ -191,5 +217,11 @@ public class scene3_4 extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         ((AnimationDrawable) horse.getBackground()).start();
+    }
+    public void checkDown(){
+        if (flagball == true && flagHorse == true){
+            btn_back.setVisibility(View.VISIBLE);
+//            btn_next.setVisibility(View.VISIBLE);
+        }
     }
 }

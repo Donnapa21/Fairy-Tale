@@ -15,11 +15,14 @@ import android.widget.ImageView;
 
 public class scene3_2 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase;
-    ImageView sung1, meat1,fish, fish1;
+    ImageView sung1, meat1, fish, fish1, bgSun, wood, tree, trees, waterfall, fishes, bro1, bro2;
     ImageView word3_21, word3_22;
     //boolean
     boolean sung = false;
     boolean meat = false;
+    boolean flagSung, flagMeat;
+    animStandUp anim;
+
     //dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -30,21 +33,56 @@ public class scene3_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_2);
 
+        //bgSun
+        bgSun = (ImageView) findViewById(R.id.imgSun);
+        anim = new animStandUp(bgSun);
+
+        //waterfall
+        waterfall = (ImageView) findViewById(R.id.waterfall);
+        anim = new animStandUp(waterfall);
+
+        //wood
+        wood = (ImageView) findViewById(R.id.wood);
+        anim = new animStandUp(wood);
+
+        //fishes
+        fishes = (ImageView) findViewById(R.id.fish);
+        anim = new animStandUp(fishes);
+
+        //bro1
+        bro1 = (ImageView) findViewById(R.id.bro1);
+        anim = new animStandUp(bro1);
+
+        //bro2
+        bro2 = (ImageView) findViewById(R.id.bro2);
+        anim = new animStandUp(bro2);
+
+        //tree
+        tree = (ImageView) findViewById(R.id.tree);
+        anim = new animStandUp(tree);
+
+        //trees
+        trees = (ImageView) findViewById(R.id.trees);
+        anim = new animStandUp(trees);
+
         //word
-        word3_21 = (ImageView)findViewById(R.id.word3_21);
-        word3_22 = (ImageView)findViewById(R.id.word3_22);
+        word3_21 = (ImageView) findViewById(R.id.word3_21);
+        word3_22 = (ImageView) findViewById(R.id.word3_22);
 
         //animfish
-        fish = (ImageView)findViewById(R.id.animfish);
-        ((AnimationDrawable)fish.getBackground()).start();
-        fish1 = (ImageView)findViewById(R.id.animfish1);
-        ((AnimationDrawable)fish1.getBackground()).start();
+        fish = (ImageView) findViewById(R.id.animfish);
+        ((AnimationDrawable) fish.getBackground()).start();
+        fish1 = (ImageView) findViewById(R.id.animfish1);
+        ((AnimationDrawable) fish1.getBackground()).start();
         //sung1
-        sung1 = (ImageView)findViewById(R.id.sung1);
-        ((AnimationDrawable)sung1.getBackground()).start();
+        sung1 = (ImageView) findViewById(R.id.sung1);
+        anim = new animStandUp(sung1);
+        ((AnimationDrawable) sung1.getBackground()).start();
         sung1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagSung = true;
+                checkDown();
                 try {
 
                     if (sung == false) {
@@ -66,11 +104,14 @@ public class scene3_2 extends AppCompatActivity {
         });
 
         //meat
-        meat1 = (ImageView)findViewById(R.id.meat1);
-        ((AnimationDrawable)meat1.getBackground()).start();
+        meat1 = (ImageView) findViewById(R.id.meat1);
+        anim = new animStandUp(meat1);
+        ((AnimationDrawable) meat1.getBackground()).start();
         meat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagMeat = true;
+                checkDown();
                 try {
 
                     if (meat == false) {
@@ -163,4 +204,12 @@ public class scene3_2 extends AppCompatActivity {
             }
         });
     }
+
+    public void checkDown() {
+        if (flagSung == true && flagMeat == true) {
+            btn_back.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
+        }
+    }
 }
+

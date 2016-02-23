@@ -8,24 +8,24 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:background="@drawable/scene_index"/>
+        android:background="@drawable/scene_index"
+        android:scaleType="fitXY" />
 
     <ImageView
         android:layout_width="850dp"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
-        android:src="@drawable/page3_12"/>
+        android:src="@drawable/page3_12" />
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_back"/>
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back" />
 
     <Button
         android:id="@+id/btn_next"
@@ -33,24 +33,26 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_next"/>
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_next" />
+
     <Button
         android:id="@+id/btn_pause"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/button_pause"/>
+        android:background="@drawable/button_pause" />
 
     <ToggleButton
         android:id="@+id/btn_music"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_toLeftOf="@+id/btn_pause"
         android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/btn_pause"
         android:background="@drawable/btn_music"
-        />
+        android:textOff=""
+        android:textOn="" />
 
 </RelativeLayout>

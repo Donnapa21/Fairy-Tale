@@ -29,6 +29,7 @@
         android:src="@drawable/box3_1" />
 
     <ImageView
+        android:id="@+id/stage"
         android:layout_width="760dp"
         android:layout_height="260dp"
         android:layout_alignParentLeft="true"
@@ -38,6 +39,7 @@
         android:src="@drawable/stage" />
 
     <ImageView
+        android:id="@+id/sis"
         android:layout_width="460dp"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
@@ -101,6 +103,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
+        android:visibility="invisible"
         android:background="@drawable/button_back" />
 
     <Button
@@ -111,6 +114,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
+        android:visibility="invisible"
         android:background="@drawable/button_next" />
 
     <Button

@@ -22,6 +22,7 @@ public class page3_22 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    boolean isOpen = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class page3_22 extends AppCompatActivity {
         //เล่านิทาน
 
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.scene3_22);
+        mediaPlayer = MediaPlayer.create(this, R.raw.pg3_22);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
@@ -39,10 +40,15 @@ public class page3_22 extends AppCompatActivity {
 
         btn_music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                if (arg1) {
+                if (isOpen == true) {
                     mediaPlayer.start();
-                } else
+                    btn_music.setBackgroundResource(R.drawable.btn_music);
+                    isOpen = false;
+                } else{
                     mediaPlayer.pause();
+                    btn_music.setBackgroundResource(R.drawable.btn_music_act);
+                    isOpen = true;
+                }
             }
         });
 
