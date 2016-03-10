@@ -26,6 +26,7 @@
         android:layout_height="260dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:rotationX="90"
         android:src="@drawable/box3_1" />
 
     <ImageView
@@ -45,6 +46,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:rotationX="90"
         android:src="@drawable/sis" />
 
     <ImageView
@@ -55,7 +57,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="230dp"
         android:layout_marginRight="150dp"
-        android:background="@drawable/animwoman1" />
+        android:background="@drawable/animwoman1"
+        android:rotationX="90" />
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -70,9 +73,8 @@
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/word31"
-            android:visibility="gone"
-            />
+            android:src="@drawable/word3_11"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -83,7 +85,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="120dp"
         android:layout_marginLeft="230dp"
-        android:background="@drawable/animred" />
+        android:background="@drawable/animred"
+        android:rotationX="90"/>
 
 
     <ImageView
@@ -93,7 +96,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="695dp"
         android:layout_marginTop="135dp"
-        android:background="@drawable/animmalai" />
+        android:background="@drawable/animmalai"
+        android:rotationX="90"/>
 
 
     <Button
@@ -103,8 +107,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
-        android:visibility="invisible"
-        android:background="@drawable/button_back" />
+        android:background="@drawable/button_back"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_next"
@@ -114,8 +118,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:visibility="invisible"
-        android:background="@drawable/button_next" />
+        android:background="@drawable/button_next"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_pause"

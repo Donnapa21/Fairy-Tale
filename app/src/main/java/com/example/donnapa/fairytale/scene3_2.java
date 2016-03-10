@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +19,12 @@ public class scene3_2 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase;
     ImageView sung1, meat1, fish, fish1, bgSun, wood, tree, trees, waterfall, fishes, bro1, bro2;
     ImageView word3_21, word3_22;
+    MediaPlayer soundsungthong, soundmeat;
     //boolean
     boolean sung = false;
     boolean meat = false;
     boolean flagSung, flagMeat;
-    animStandUp anim;
+    AnimPopUp animPopUp;
 
     //dialog
     AlertDialog.Builder builder;
@@ -33,37 +36,39 @@ public class scene3_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_2);
 
+        animPopUp = new AnimPopUp();
+
         //bgSun
         bgSun = (ImageView) findViewById(R.id.imgSun);
-        anim = new animStandUp(bgSun);
+        animPopUp.PlayAnimation(bgSun);
 
         //waterfall
         waterfall = (ImageView) findViewById(R.id.waterfall);
-        anim = new animStandUp(waterfall);
+        animPopUp.PlayAnimation(waterfall);
 
         //wood
         wood = (ImageView) findViewById(R.id.wood);
-        anim = new animStandUp(wood);
+        animPopUp.PlayAnimation(wood);
 
         //fishes
         fishes = (ImageView) findViewById(R.id.fish);
-        anim = new animStandUp(fishes);
+        animPopUp.PlayAnimation(fishes);
 
         //bro1
         bro1 = (ImageView) findViewById(R.id.bro1);
-        anim = new animStandUp(bro1);
+        animPopUp.PlayAnimation(bro1);
 
         //bro2
         bro2 = (ImageView) findViewById(R.id.bro2);
-        anim = new animStandUp(bro2);
+        animPopUp.PlayAnimation(bro2);
 
         //tree
         tree = (ImageView) findViewById(R.id.tree);
-        anim = new animStandUp(tree);
+        animPopUp.PlayAnimation(tree);
 
         //trees
         trees = (ImageView) findViewById(R.id.trees);
-        anim = new animStandUp(trees);
+        animPopUp.PlayAnimation(trees);
 
         //word
         word3_21 = (ImageView) findViewById(R.id.word3_21);
@@ -71,13 +76,11 @@ public class scene3_2 extends AppCompatActivity {
 
         //animfish
         fish = (ImageView) findViewById(R.id.animfish);
-        ((AnimationDrawable) fish.getBackground()).start();
         fish1 = (ImageView) findViewById(R.id.animfish1);
-        ((AnimationDrawable) fish1.getBackground()).start();
         //sung1
+        soundsungthong = MediaPlayer.create(this, R.raw.sungthong);
         sung1 = (ImageView) findViewById(R.id.sung1);
-        anim = new animStandUp(sung1);
-        ((AnimationDrawable) sung1.getBackground()).start();
+        animPopUp.PlayAnimation(sung1);
         sung1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +94,7 @@ public class scene3_2 extends AppCompatActivity {
                         //change image view
                         sung1.setBackgroundResource(R.drawable.sung1);
                         word3_21.setVisibility(View.VISIBLE);
+                        soundsungthong.start();
                     } else {
                         sung = false;
                         sung1.setBackgroundResource(R.drawable.animsung1);
@@ -103,10 +107,10 @@ public class scene3_2 extends AppCompatActivity {
             }
         });
 
-        //meat
+        //meat1
+        soundmeat = MediaPlayer.create(this, R.raw.meat);
         meat1 = (ImageView) findViewById(R.id.meat1);
-        anim = new animStandUp(meat1);
-        ((AnimationDrawable) meat1.getBackground()).start();
+        animPopUp.PlayAnimation(meat1);
         meat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +124,7 @@ public class scene3_2 extends AppCompatActivity {
                         //change image view
                         meat1.setBackgroundResource(R.drawable.meat1);
                         word3_22.setVisibility(View.VISIBLE);
+                        soundmeat.start();
                     } else {
                         meat = false;
                         meat1.setBackgroundResource(R.drawable.animmeat);
@@ -210,6 +215,24 @@ public class scene3_2 extends AppCompatActivity {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new CountDownTimer(1500, 50) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                ((AnimationDrawable) fish.getBackground()).start();
+                ((AnimationDrawable) fish1.getBackground()).start();
+                ((AnimationDrawable) sung1.getBackground()).start();
+                ((AnimationDrawable) meat1.getBackground()).start();
+            }
+        }.start();
     }
 }
 

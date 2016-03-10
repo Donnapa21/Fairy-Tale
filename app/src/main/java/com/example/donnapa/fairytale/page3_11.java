@@ -121,10 +121,14 @@ public class page3_11 extends AppCompatActivity {
             }
         });
     }
+    //check ให้กลับมาทำงานอีกครั้ง
     public void onResume() {
         super.onResume();
-        if(btn_music.isChecked())
+        if (isOpen == true) {
+            mediaPlayer.pause();
+        } else {
             mediaPlayer.start();
+        }
     }
     public void onPause() {
         super.onPause();

@@ -3,11 +3,11 @@
     android:oneshot="false">
     <!--//เล่นได้หลายครั้ง-->
     <item
-        android:drawable="@drawable/malai1"
+        android:drawable="@drawable/malai2"
         android:duration="500" />
 
     <item
-        android:drawable="@drawable/malai2"
+        android:drawable="@drawable/malai1"
         android:duration="500" />
 
 </animation-list>

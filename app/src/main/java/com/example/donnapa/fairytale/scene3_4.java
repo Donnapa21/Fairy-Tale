@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,62 +17,69 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-public class scene3_4 extends AppCompatActivity {
-    Button btn_back, btn_next ,btn_puase;
-    ImageView ball , horse, wall, bgSky, prain;
+public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
+    Button btn_back, btn_next, btn_puase;
+    ImageView ball, horse, bgSky, prain;
+    LinearLayout wall;
     Animation slide;
     MediaPlayer mediaPlayer;
     Dialog toy;
     int index = 0;
-    int[] restoy = {R.drawable.kema,R.drawable.kala,R.drawable.kanklauy};
+    int[] restoy = {R.drawable.kema, R.drawable.kala, R.drawable.kanklauy};
     //dialog
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
     boolean flagHorse, flagball;
-    animStandUp anim;
+    AnimPopUp animPopUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_4);
 
+        animPopUp = new AnimPopUp();
+
         //bgSky
         bgSky = (ImageView) findViewById(R.id.imgSky);
-        anim = new animStandUp(bgSky);
+        animPopUp.PlayAnimation(bgSky);
 
         //wall
-        wall = (ImageView) findViewById(R.id.wall);
-        anim = new animStandUp(wall);
+        wall = (LinearLayout) findViewById(R.id.wall);
+        animPopUp.PlayAnimation(wall);
 
         //prain
         prain = (ImageView) findViewById(R.id.prain);
-        anim = new animStandUp(prain);
+        animPopUp.PlayAnimation(prain);
 
         //ball
-        ball = (ImageView)findViewById(R.id.ball);
-        anim = new animStandUp(ball);
-        ((AnimationDrawable)ball.getBackground()).start();
-        ball.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagball = true;
-                checkDown();
-                slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
-                ball.startAnimation(slide);
-                ball.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
-//                ((AnimationDrawable) ball.getBackground()).stop();
-                ball.setBackgroundResource(R.drawable.ball2);
+        ball = (ImageView) findViewById(R.id.ball);
+        ball.setOnClickListener(this);
+        animPopUp.PlayAnimation(ball);
+//        ball.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                flagball = true;
+//                checkDown();
+//                slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
+//                ball.startAnimation(slide);
+//                slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
+//                ball.startAnimation(slide);
+////                ball.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
+////                ((AnimationDrawable) ball.getBackground()).stop();
+//                ball.setBackgroundResource(R.drawable.ball2);
 
-            }
-        });
+//            }
+//        });
 
         mediaPlayer = MediaPlayer.create(this, R.raw.horse);
 
         //horse
-        horse = (ImageView)findViewById(R.id.prasung);
-        anim = new animStandUp(horse);
+        horse = (ImageView) findViewById(R.id.prasung);
+
+                animPopUp.PlayAnimation(horse);
         horse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +87,7 @@ public class scene3_4 extends AppCompatActivity {
                 checkDown();
                 toy.show();
                 mediaPlayer.start();
-            }
+                           }
         });
 
         toy = new Dialog(scene3_4.this);
@@ -218,10 +226,44 @@ public class scene3_4 extends AppCompatActivity {
         super.onStart();
         ((AnimationDrawable) horse.getBackground()).start();
     }
-    public void checkDown(){
-        if (flagball == true && flagHorse == true){
+
+    public void checkDown() {
+        if (flagball == true && flagHorse == true) {
             btn_back.setVisibility(View.VISIBLE);
 //            btn_next.setVisibility(View.VISIBLE);
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new CountDownTimer(1500, 50) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                ((AnimationDrawable) ball.getBackground()).start();
+            }
+        }.start();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case  R.id.ball :
+                flagball = true;
+                checkDown();
+                slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
+                ball.startAnimation(slide);
+
+//                ball.setEnabled(false);//ปิดให้ปุ่มนี้ไม่ทำงาน
+//                ((AnimationDrawable) ball.getBackground()).stop();
+                ball.setBackgroundResource(R.drawable.ball2);
+                break;
+
+        }
+    }
 }
+

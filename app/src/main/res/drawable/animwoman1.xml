@@ -3,9 +3,9 @@
     android:oneshot="false">
     <item
         android:duration="500"
-        android:drawable="@drawable/woman1"/>
+        android:drawable="@drawable/woman2"/>
 
     <item
         android:duration="500"
-        android:drawable="@drawable/woman2"/>
+        android:drawable="@drawable/woman1"/>
 </animation-list>

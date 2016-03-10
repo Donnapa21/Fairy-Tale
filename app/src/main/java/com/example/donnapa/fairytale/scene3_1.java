@@ -5,9 +5,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.style.TtsSpan;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -24,6 +27,7 @@ public class scene3_1 extends AppCompatActivity {
     ImageView ng1, malai, woman1, bgcloud, sis, stage;
     ImageView word31;
     Animation slide;
+    MediaPlayer soundrojana;
 
     boolean flagMalai, flagKong, flagRojana;
 
@@ -34,29 +38,30 @@ public class scene3_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
-    animStandUp anim;
+    AnimPopUp animPopUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_1);
-
+        animPopUp = new AnimPopUp();
         //ฉากหลัง
         bgcloud = (ImageView) findViewById(R.id.imgCloud);
-        anim = new animStandUp(bgcloud);
+        animPopUp.PlayAnimation(bgcloud);
+
 
         //sis
         sis = (ImageView) findViewById(R.id.sis);
-        anim = new animStandUp(sis);
+        animPopUp.PlayAnimation(sis);
 
         //word
         word31 = (ImageView) findViewById(R.id.word31);
 
         //  คลิกรจนา
 
+        soundrojana = MediaPlayer.create(this, R.raw.rojana);
         woman1 = (ImageView) findViewById(R.id.woman1);
-        anim = new animStandUp(woman1);
-        ((AnimationDrawable) woman1.getBackground()).start();
+        animPopUp.PlayAnimation(woman1);
         woman1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +74,7 @@ public class scene3_1 extends AppCompatActivity {
                         //change image view
                         woman1.setBackgroundResource(R.drawable.woman1);
                         word31.setVisibility(View.VISIBLE);
+                        soundrojana.start();
                     } else {
                         woman = false;
                         woman1.setBackgroundResource(R.drawable.animwoman1);
@@ -81,8 +87,7 @@ public class scene3_1 extends AppCompatActivity {
         });
         //  คลิกพวงมาลัย
         malai = (ImageView) findViewById(R.id.malai);
-        anim = new animStandUp(malai);
-        ((AnimationDrawable) malai.getBackground()).start();
+        animPopUp.PlayAnimation(malai);
         malai.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
@@ -99,8 +104,8 @@ public class scene3_1 extends AppCompatActivity {
 
         //กดเงาะ
         ng1 = (ImageView) findViewById(R.id.ng1);
-        anim = new animStandUp(ng1);
-        ((AnimationDrawable) ng1.getBackground()).start();
+//        anim = new animStandUp(ng1);
+        animPopUp.PlayAnimation(ng1);
         ng1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,5 +219,23 @@ public class scene3_1 extends AppCompatActivity {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new CountDownTimer(1500, 50) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                ((AnimationDrawable) ng1.getBackground()).start();
+                ((AnimationDrawable) malai.getBackground()).start();
+                ((AnimationDrawable) woman1.getBackground()).start();
+            }
+        }.start();
     }
 }

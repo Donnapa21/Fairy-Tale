@@ -5,23 +5,28 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class scene3_3 extends AppCompatActivity {
-    Button btn_back, btn_next,btn_puase;
-    ImageView thaosamon1, prain1, bgSky, wall;
+    Button btn_back, btn_next, btn_puase;
+    ImageView thaosamon1, prain1, bgSky;
+    LinearLayout wall;
     ImageView word3_31, word3_32;
+    MediaPlayer soundthaosamon, soundprain;
     //boolean
     boolean thaosamon = false;
     boolean prain = false;
     boolean flagThaosamon, flagPrain;
-    animStandUp anim;
+    AnimPopUp animPopUp;
     //dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -32,20 +37,23 @@ public class scene3_3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_3);
 
+        animPopUp = new AnimPopUp();
+
         //bgSky
         bgSky = (ImageView) findViewById(R.id.imgSky);
-        anim = new animStandUp(bgSky);
+        animPopUp.PlayAnimation(bgSky);
 
         //wall
-        wall = (ImageView) findViewById(R.id.wall);
-        anim = new animStandUp(wall);
+        wall = (LinearLayout) findViewById(R.id.wall);
+        animPopUp.PlayAnimation(wall);
 
-        word3_31 = (ImageView)findViewById(R.id.word3_31);
-        word3_32 = (ImageView)findViewById(R.id.word3_32);
+        word3_31 = (ImageView) findViewById(R.id.word3_31);
+        word3_32 = (ImageView) findViewById(R.id.word3_32);
 
-        thaosamon1 = (ImageView)findViewById(R.id.thaosamon1);
-        anim = new animStandUp(thaosamon1);
-        ((AnimationDrawable)thaosamon1.getBackground()).start();
+        soundthaosamon = MediaPlayer.create(this,R.raw.thaosamon);
+
+        thaosamon1 = (ImageView) findViewById(R.id.thaosamon1);
+        animPopUp.PlayAnimation(thaosamon1);
         thaosamon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +67,7 @@ public class scene3_3 extends AppCompatActivity {
                         //change image view
                         thaosamon1.setBackgroundResource(R.drawable.thaosamon1);
                         word3_31.setVisibility(View.VISIBLE);
+                        soundthaosamon.start();
                     } else {
                         thaosamon = false;
                         thaosamon1.setBackgroundResource(R.drawable.animthaosamon);
@@ -70,9 +79,9 @@ public class scene3_3 extends AppCompatActivity {
                 }
             }
         });
-        prain1 = (ImageView)findViewById(R.id.prain1);
-        anim = new animStandUp(prain1);
-        ((AnimationDrawable)prain1.getBackground()).start();
+        soundprain = MediaPlayer.create(this,R.raw.prain);
+        prain1 = (ImageView) findViewById(R.id.prain1);
+        animPopUp.PlayAnimation(prain1);
         prain1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +95,7 @@ public class scene3_3 extends AppCompatActivity {
                         //change image view
                         prain1.setBackgroundResource(R.drawable.prain1);
                         word3_32.setVisibility(View.VISIBLE);
+                        soundprain.start();
                     } else {
                         prain = false;
                         prain1.setBackgroundResource(R.drawable.animprain);
@@ -170,10 +180,27 @@ public class scene3_3 extends AppCompatActivity {
             }
         });
     }
-    public void checkDown(){
-        if (flagThaosamon == true && flagPrain == true){
+
+    public void checkDown() {
+        if (flagThaosamon == true && flagPrain == true) {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new CountDownTimer(1500, 50) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                ((AnimationDrawable) thaosamon1.getBackground()).start();
+                ((AnimationDrawable) prain1.getBackground()).start();
+            }
+        }.start();
     }
 }

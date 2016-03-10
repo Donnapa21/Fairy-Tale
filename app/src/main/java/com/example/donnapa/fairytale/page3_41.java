@@ -122,8 +122,11 @@ public class page3_41 extends AppCompatActivity {
     }
     public void onResume() {
         super.onResume();
-        if(btn_music.isChecked())
+        if(isOpen == true) {
+            mediaPlayer.pause();
+        }else{
             mediaPlayer.start();
+        }
     }
     public void onPause() {
         super.onPause();

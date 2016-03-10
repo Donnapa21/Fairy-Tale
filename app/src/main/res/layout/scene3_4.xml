@@ -17,6 +17,7 @@
         android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:rotationX="90"
         android:scaleType="fitXY"
         android:src="@drawable/box3_3" />
 
@@ -31,12 +32,13 @@
         android:src="@drawable/book3_3" />
 
     <LinearLayout
+        android:id="@+id/wall"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:rotationX="90">
 
         <ImageView
-            android:id="@+id/wall"
             android:layout_width="585dp"
             android:layout_height="match_parent"
             android:src="@drawable/wall" />
@@ -48,24 +50,28 @@
         android:layout_height="300dp"
         android:layout_marginLeft="240dp"
         android:layout_marginTop="120dp"
-        android:background="@drawable/animprasung" />
+        android:background="@drawable/animprasung"
+        android:rotationX="90" />
 
     <ImageView
         android:id="@+id/prain"
         android:layout_width="350dp"
         android:layout_height="340dp"
         android:layout_marginLeft="520dp"
+        android:rotationX="90"
         android:src="@drawable/prain3" />
 
     <ImageView
         android:id="@+id/ball"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="530dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/animball"/>
+        android:background="@drawable/animball"
+        android:rotationX="90" />
+
     <Button
         android:id="@+id/btn_back"
         android:layout_width="70dp"
@@ -73,8 +79,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
-        android:visibility="invisible"
-        android:background="@drawable/button_back" />
+        android:background="@drawable/button_back"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_next"
@@ -84,8 +90,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:visibility="invisible"
-        android:background="@drawable/button_next" />
+        android:background="@drawable/button_next"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_pause"
@@ -94,5 +100,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/button_pause"/>
+        android:background="@drawable/button_pause" />
 </RelativeLayout>
