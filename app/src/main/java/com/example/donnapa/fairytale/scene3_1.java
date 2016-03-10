@@ -27,7 +27,7 @@ public class scene3_1 extends AppCompatActivity {
     ImageView ng1, malai, woman1, bgcloud, sis, stage;
     ImageView word31;
     Animation slide;
-    MediaPlayer soundrojana;
+    MediaPlayer mediaPlayer;
 
     boolean flagMalai, flagKong, flagRojana;
 
@@ -45,23 +45,24 @@ public class scene3_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scene3_1);
         animPopUp = new AnimPopUp();
-        //ฉากหลัง
+
+        //popup ฉากหลัง
         bgcloud = (ImageView) findViewById(R.id.imgCloud);
         animPopUp.PlayAnimation(bgcloud);
 
-
-        //sis
+        //popupsis
         sis = (ImageView) findViewById(R.id.sis);
         animPopUp.PlayAnimation(sis);
 
         //word
         word31 = (ImageView) findViewById(R.id.word31);
 
-        //  คลิกรจนา
+        //รจนา
 
-        soundrojana = MediaPlayer.create(this, R.raw.rojana);
         woman1 = (ImageView) findViewById(R.id.woman1);
+        //popup รจนา
         animPopUp.PlayAnimation(woman1);
+        //คลิกรจนา
         woman1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,20 +75,25 @@ public class scene3_1 extends AppCompatActivity {
                         //change image view
                         woman1.setBackgroundResource(R.drawable.woman1);
                         word31.setVisibility(View.VISIBLE);
-                        soundrojana.start();
+                        mediaPlayer= MediaPlayer.create(getApplicationContext(), R.raw.rojana);
+                        mediaPlayer.start();
                     } else {
                         woman = false;
+                        stopPlaying();
                         woman1.setBackgroundResource(R.drawable.animwoman1);
                         word31.setVisibility(View.INVISIBLE);
                         ((AnimationDrawable) woman1.getBackground()).start();
+
                     }
                 } catch (Exception e) {
                 }
             }
         });
-        //  คลิกพวงมาลัย
+        // พวงมาลัย
         malai = (ImageView) findViewById(R.id.malai);
+        // popup พวงมาลัย
         animPopUp.PlayAnimation(malai);
+        // คลิก พวงมาลัย
         malai.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
@@ -143,6 +149,7 @@ public class scene3_1 extends AppCompatActivity {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        // คลิกปุ่ม pause
         btn_puase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +185,7 @@ public class scene3_1 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            dialog.dismiss();
+                        dialog.dismiss();
                     }
                 });
 
@@ -214,8 +221,16 @@ public class scene3_1 extends AppCompatActivity {
         );
     }
 
-    public void checkDown(){
-        if (flagKong == true && flagMalai == true && flagRojana == true){
+    public void stopPlaying() {
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    public void checkDown() {
+        if (flagKong == true && flagMalai == true && flagRojana == true) {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }

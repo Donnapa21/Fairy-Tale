@@ -28,6 +28,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
     Dialog toy;
     int index = 0;
     int[] restoy = {R.drawable.kema, R.drawable.kala, R.drawable.kanklauy};
+    int[] soundtoy = {R.raw.kema, R.raw.kala, R.raw.kankluy};
     //dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -74,20 +75,28 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
 //            }
 //        });
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.horse);
 
         //horse
         horse = (ImageView) findViewById(R.id.prasung);
 
-                animPopUp.PlayAnimation(horse);
+        animPopUp.PlayAnimation(horse);
         horse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flagHorse = true;
                 checkDown();
                 toy.show();
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.horse);
                 mediaPlayer.start();
-                           }
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[0]);
+                        mediaPlayer.start();
+
+                    }
+                });
+            }
         });
 
         toy = new Dialog(scene3_4.this);
@@ -96,8 +105,8 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
         toy.setContentView(R.layout.toylayout);
         //dialog ให้สามารถปิิดได้
         toy.setCancelable(true);
-        //เปลี่ยนหน้า
 
+        //เปลี่ยนหน้า dialog การละเล่น
         final Button btnBack = (Button) toy.findViewById(R.id.btnBack);
         final Button btnNext = (Button) toy.findViewById(R.id.btnNext);
         final ImageView kala = (ImageView) toy.findViewById(R.id.kala);
@@ -108,9 +117,13 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 if (index == restoy.length - 1) {
                     kala.setImageResource(restoy[0]);
                     index = 0;
-
+                    mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
+                    mediaPlayer.start();
                 } else {
+                    mediaPlayer.stop();
                     kala.setImageResource(restoy[++index]);
+                    mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
+                    mediaPlayer.start();
                 }
             }
         });
@@ -121,9 +134,13 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 if (index == 0) {
                     kala.setImageResource(restoy[restoy.length - 1]);
                     index = restoy.length - 1;
+                    mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
+                    mediaPlayer.start();
                 } else {
+                    mediaPlayer.stop();
                     kala.setImageResource(restoy[--index]);
-
+                    mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
+                    mediaPlayer.start();
                 }
             }
         });
@@ -135,6 +152,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 toy.cancel();
+                mediaPlayer.stop();
             }
         });
 

@@ -21,7 +21,7 @@ public class scene3_3 extends AppCompatActivity {
     ImageView thaosamon1, prain1, bgSky;
     LinearLayout wall;
     ImageView word3_31, word3_32;
-    MediaPlayer soundthaosamon, soundprain;
+    MediaPlayer mediaPlayer;
     //boolean
     boolean thaosamon = false;
     boolean prain = false;
@@ -47,10 +47,12 @@ public class scene3_3 extends AppCompatActivity {
         wall = (LinearLayout) findViewById(R.id.wall);
         animPopUp.PlayAnimation(wall);
 
+        //word
         word3_31 = (ImageView) findViewById(R.id.word3_31);
         word3_32 = (ImageView) findViewById(R.id.word3_32);
 
-        soundthaosamon = MediaPlayer.create(this,R.raw.thaosamon);
+        //thaosamon
+
 
         thaosamon1 = (ImageView) findViewById(R.id.thaosamon1);
         animPopUp.PlayAnimation(thaosamon1);
@@ -67,19 +69,23 @@ public class scene3_3 extends AppCompatActivity {
                         //change image view
                         thaosamon1.setBackgroundResource(R.drawable.thaosamon1);
                         word3_31.setVisibility(View.VISIBLE);
-                        soundthaosamon.start();
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thaosamon);
+                        mediaPlayer.start();
                     } else {
                         thaosamon = false;
+                        stopPlaying();
                         thaosamon1.setBackgroundResource(R.drawable.animthaosamon);
                         word3_31.setVisibility(View.INVISIBLE);
                         ((AnimationDrawable) thaosamon1.getBackground()).start();
+                        mediaPlayer.start();
                     }
 
                 } catch (Exception e) {
                 }
             }
         });
-        soundprain = MediaPlayer.create(this,R.raw.prain);
+        //prain
+
         prain1 = (ImageView) findViewById(R.id.prain1);
         animPopUp.PlayAnimation(prain1);
         prain1.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +101,12 @@ public class scene3_3 extends AppCompatActivity {
                         //change image view
                         prain1.setBackgroundResource(R.drawable.prain1);
                         word3_32.setVisibility(View.VISIBLE);
-                        soundprain.start();
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.prain);
+                        mediaPlayer.start();
+
                     } else {
                         prain = false;
+                        stopPlaying();
                         prain1.setBackgroundResource(R.drawable.animprain);
                         word3_32.setVisibility(View.INVISIBLE);
                         ((AnimationDrawable) prain1.getBackground()).start();
@@ -181,12 +190,22 @@ public class scene3_3 extends AppCompatActivity {
         });
     }
 
+    public void stopPlaying() {
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    // check ว่า กดทุกอันยัง แล้วปุ่มเปลี่ยนจะขึ้นมา
     public void checkDown() {
         if (flagThaosamon == true && flagPrain == true) {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -196,6 +215,7 @@ public class scene3_3 extends AppCompatActivity {
 
             }
 
+            //ให้ popup ขึ้นมาก่อนแล้วค่อยกระพริบ
             @Override
             public void onFinish() {
                 ((AnimationDrawable) thaosamon1.getBackground()).start();

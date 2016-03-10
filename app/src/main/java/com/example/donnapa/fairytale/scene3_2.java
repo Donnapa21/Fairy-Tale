@@ -19,7 +19,7 @@ public class scene3_2 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase;
     ImageView sung1, meat1, fish, fish1, bgSun, wood, tree, trees, waterfall, fishes, bro1, bro2;
     ImageView word3_21, word3_22;
-    MediaPlayer soundsungthong, soundmeat;
+    MediaPlayer mediaPlayer;
     //boolean
     boolean sung = false;
     boolean meat = false;
@@ -78,7 +78,7 @@ public class scene3_2 extends AppCompatActivity {
         fish = (ImageView) findViewById(R.id.animfish);
         fish1 = (ImageView) findViewById(R.id.animfish1);
         //sung1
-        soundsungthong = MediaPlayer.create(this, R.raw.sungthong);
+
         sung1 = (ImageView) findViewById(R.id.sung1);
         animPopUp.PlayAnimation(sung1);
         sung1.setOnClickListener(new View.OnClickListener() {
@@ -94,9 +94,11 @@ public class scene3_2 extends AppCompatActivity {
                         //change image view
                         sung1.setBackgroundResource(R.drawable.sung1);
                         word3_21.setVisibility(View.VISIBLE);
-                        soundsungthong.start();
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sungthong);
+                        mediaPlayer.start();
                     } else {
                         sung = false;
+                        stopPlaying();
                         sung1.setBackgroundResource(R.drawable.animsung1);
                         word3_21.setVisibility(View.INVISIBLE);
                         ((AnimationDrawable) sung1.getBackground()).start();
@@ -108,7 +110,7 @@ public class scene3_2 extends AppCompatActivity {
         });
 
         //meat1
-        soundmeat = MediaPlayer.create(this, R.raw.meat);
+
         meat1 = (ImageView) findViewById(R.id.meat1);
         animPopUp.PlayAnimation(meat1);
         meat1.setOnClickListener(new View.OnClickListener() {
@@ -124,9 +126,11 @@ public class scene3_2 extends AppCompatActivity {
                         //change image view
                         meat1.setBackgroundResource(R.drawable.meat1);
                         word3_22.setVisibility(View.VISIBLE);
-                        soundmeat.start();
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.meat);
+                        mediaPlayer.start();
                     } else {
                         meat = false;
+                        stopPlaying();
                         meat1.setBackgroundResource(R.drawable.animmeat);
                         word3_22.setVisibility(View.INVISIBLE);
                         ((AnimationDrawable) meat1.getBackground()).start();
@@ -210,12 +214,21 @@ public class scene3_2 extends AppCompatActivity {
         });
     }
 
+    public void stopPlaying() {
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
     public void checkDown() {
         if (flagSung == true && flagMeat == true) {
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
