@@ -117,6 +117,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 if (index == restoy.length - 1) {
                     kala.setImageResource(restoy[0]);
                     index = 0;
+                    mediaPlayer.stop();
                     mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
                     mediaPlayer.start();
                 } else {
@@ -134,6 +135,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 if (index == 0) {
                     kala.setImageResource(restoy[restoy.length - 1]);
                     index = restoy.length - 1;
+                    mediaPlayer.stop();
                     mediaPlayer = MediaPlayer.create(scene3_4.this, soundtoy[index]);
                     mediaPlayer.start();
                 } else {

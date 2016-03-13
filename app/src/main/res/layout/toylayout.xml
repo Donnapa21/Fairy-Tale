@@ -14,8 +14,8 @@
 
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
@@ -32,8 +32,8 @@
 
     <Button
         android:id="@+id/btnClose"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/button_close" />
 

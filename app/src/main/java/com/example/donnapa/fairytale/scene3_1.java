@@ -75,7 +75,7 @@ public class scene3_1 extends AppCompatActivity {
                         //change image view
                         woman1.setBackgroundResource(R.drawable.woman1);
                         word31.setVisibility(View.VISIBLE);
-                        mediaPlayer= MediaPlayer.create(getApplicationContext(), R.raw.rojana);
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.rojana);
                         mediaPlayer.start();
                     } else {
                         woman = false;
@@ -154,7 +154,6 @@ public class scene3_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.setContentView(R.layout.btndialog);
-
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
@@ -239,6 +238,13 @@ public class scene3_1 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        woman1.setBackgroundResource(R.drawable.animwoman1);
+        ng1.setBackgroundResource(R.drawable.animred);
+        malai.setBackgroundResource(R.drawable.animmalai);
+        word31.setVisibility(View.INVISIBLE);
+
+
         new CountDownTimer(1500, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -253,4 +259,16 @@ public class scene3_1 extends AppCompatActivity {
             }
         }.start();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        
+    }
+
 }

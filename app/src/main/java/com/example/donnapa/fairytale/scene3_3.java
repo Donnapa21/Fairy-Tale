@@ -209,6 +209,12 @@ public class scene3_3 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        thaosamon1.setBackgroundResource(R.drawable.animthaosamon);
+        prain1.setBackgroundResource(R.drawable.animprain);
+        word3_31.setVisibility(View.INVISIBLE);
+        word3_32.setVisibility(View.INVISIBLE);
+
         new CountDownTimer(1500, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -222,5 +228,15 @@ public class scene3_3 extends AppCompatActivity {
                 ((AnimationDrawable) prain1.getBackground()).start();
             }
         }.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

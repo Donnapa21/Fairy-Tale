@@ -232,6 +232,11 @@ public class scene3_2 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        word3_21.setVisibility(View.INVISIBLE);
+        word3_22.setVisibility(View.INVISIBLE);
+        meat1.setBackgroundResource(R.drawable.animmeat);
+        sung1.setBackgroundResource(R.drawable.animsung1);
+
         new CountDownTimer(1500, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -246,6 +251,16 @@ public class scene3_2 extends AppCompatActivity {
                 ((AnimationDrawable) meat1.getBackground()).start();
             }
         }.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
 

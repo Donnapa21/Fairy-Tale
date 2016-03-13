@@ -12,7 +12,7 @@
         android:scaleType="fitXY" />
 
     <ImageView
-        android:layout_width="850dp"
+        android:layout_width="1100dp"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
@@ -20,8 +20,8 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
@@ -39,16 +39,16 @@
 
     <Button
         android:id="@+id/btn_pause"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
         android:background="@drawable/button_pause" />
 
     <ToggleButton
         android:id="@+id/btn_music"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/btn_pause"
         android:background="@drawable/btn_music"

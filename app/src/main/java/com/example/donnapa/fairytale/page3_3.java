@@ -141,4 +141,14 @@ public class page3_3 extends AppCompatActivity {
         mediaPlayer.release();
         mediaPlayer = null;
     }
-}
+//    //ให้เสียงหยุด
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (mediaPlayer != null) {
+//            mediaPlayer.start();
+//            mediaPlayer.release();
+//            mediaPlayer = null;
+//        }
+    }
+
